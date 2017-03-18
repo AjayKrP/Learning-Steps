@@ -3,15 +3,25 @@ import CLIENT.ConvertCurrency;
 import CLIENT.RequestBalence;
 import CONSTANT.*;
 import java.util.*;
+
 public class Application {
 
     private int choice;
-    private Message message;
-    private CreateAccount createAccount;
-    private Management management;
-    private RequestBalence requestBalence;
-    private CheckBalence checkBalence;
-    private ConvertCurrency convertCurrency;
+    private Message message ;
+    private Management management ;
+    private RequestBalence requestBalence ;
+    private ConvertCurrency convertCurrency ;
+    private LoanFacility loanFacility;
+
+    public Application(){
+        message = new Message();
+        management = new Management();
+        requestBalence = new RequestBalence();
+        convertCurrency = new ConvertCurrency();
+        loanFacility = new LoanFacility();
+    }
+
+
     private Scanner scanner = new Scanner(System.in);
 
 
@@ -23,67 +33,119 @@ public class Application {
     public void Choice() {
         String name;
         Double balence;
-        int ch = 6;
+        String ch= "y";
 
         do {
             for (int i = 0; i < message.arrayList.size(); ++i){
-                message.arrayList.get(i);
+                System.out.println(i+1 +" " + message.arrayList.get(i));
             }
-            System.out.println("Enter your choice :");
+            System.out.print("Enter your choice :");
             choice = scanner.nextInt();
             switch (choice) {
+
                 case 1:
-                    System.out.println("Enter name : ");
-                    name = scanner.nextLine();
+                    name = requestBalence.enterDetails();
+                    System.out.print("Enter your initial balence: ");
                     balence = scanner.nextDouble();
-                    createAccount.accountInfo.put(name, balence);
+                    if(balence >= 0) {
+                        management.createAccount(name, balence);
+                    }
+                    else {
+                        System.out.println("You have entere incorrect balence!!!");
+                    }
                     break;
 
                 case 2:
-                    System.out.println("Enter name :");
-                    name = scanner.nextLine();
-                    try {
-                        if(management.searchPeople(createAccount.accountInfo, name)){
+
+                  name = requestBalence.enterDetails();
+                   try {
+
+                        if(management.searchPeople(name) != null) {
                             System.out.println("Enter new balence: ");
                             balence = scanner.nextDouble();
-                            createAccount.accountInfo.put(name, balence);
+                            if(balence >= 0){
+                            management.ChangeBalence(name, management.arrayList.get(management.searchPeople(name)).getBalence() + balence);
                         }
-                    }catch (Exception e){
-                        System.out.println("Your name is not found.\n Please create acount first");
+                        else{
+                            System.out.println(message.invalidAccountMessage);
+                        }}
+                        else {
+                            System.out.println("You have entere incorrect balence!!!");
+                        }
                     }
-                    System.out.println(message.depositeMessage);
+                    catch (Exception e){
+                        System.out.println("Your name is not found.\n Please create acount first");
+                            System.out.println(message.depositeMessage);
+                   }
                     break;
 
+
                 case 3:
-                    System.out.println("Enter withdrawal amount: ");
-                    balence = scanner.nextDouble();
-                    requestBalence.EnterAmount(balence);
-                    System.out.println(message.widrawalMessage);
+                    try {
+                        System.out.print("Enter withdrawal amount: ");
+                        balence = scanner.nextDouble();
+                        if(balence >= 0) {
+                            requestBalence.RequestForWithdrawal(management, balence);
+                            System.out.println("Withdrawal amount: " + balence);
+                            System.out.println(message.widrawalMessage);
+                        }
+                        else {
+                            System.out.println("You have entred incorrect balence!!!");
+                        }
+                    }catch (Exception e){
+                        System.out.println("Please enter a valid amount!");
+                    }
+
                     break;
 
 
                 case 4:
-                    System.out.println("Enter your name: ");
-                    name = scanner.nextLine();
-                    System.out.println(checkBalence.totalBalence(name));
+                    name = requestBalence.enterDetails();
+                    Double currentBalence;
+                    try{
+                    if(management.arrayList.get(management.searchPeople(name)) != null){
+                        currentBalence = management.arrayList.get(management.searchPeople(name)).getBalence();
+                        System.out.println("Your current balence is: "+currentBalence);
+                    }
+
+                    }catch (Exception e){
+                        System.out.println(message.invalidAccountMessage);
+                    }
+
                     break;
 
 
                 case 5:
-                    System.out.println("Enter amount which you want to change: ");
-                    balence = scanner.nextDouble();
-                    convertCurrency.enterAmount();
+                    convertCurrency.changeCurrencyCountryWise(management);
+                    break;
+
+                case 6:
+                    name = requestBalence.enterDetails();
+                    loanFacility.takeLoan(management, name);
+
+                    break;
+
+                case 7:
+                    management.displayAllClientName(management);
+                    break;
+
+                case 8:
+                    management.displayAllClientNameWithBalence(management);
                     break;
 
 
-                    default:
-                        System.out.println("Choice not found!!!");
-                        break;
-
+                 default:
+                     System.out.println("Choice not found!!!");
+                     break;
+            }
+            try {
+                System.out.print("Do you want to try again(y/n)? ");
+                ch = scanner.next();
+            }
+            catch (Exception e){
+                System.out.println("Enter a valid character!!!");
             }
 
-            System.out.println("Do you want to try again(y/n)? ");
-            ch = scanner.nextInt();
-        }while (ch != 6);
+        }while (ch != "n" || ch != "N");
     }
 }
