@@ -9,10 +9,11 @@ public class ManagementStudent {
     private String mobile;
     private String address;
     SubmitStudentDetails submitStudentDetails;
-
+    RoomDetails roomDetails;
     public ManagementStudent(){
         scanner = new Scanner(System.in);
         submitStudentDetails = new SubmitStudentDetails();
+        roomDetails = new RoomDetails();
     }
 
     public void Deatils(){
@@ -24,19 +25,20 @@ public class ManagementStudent {
         mobile = scanner.next();
     }
     private void choice(){
-        System.out.println("\n1.Enter student details: ");
-        System.out.println("\n2.search student");
-        System.out.println("\n3.delete student");
-        System.out.println("\n4.Display student");
-        System.out.println("\n5.Modify record");
-        System.out.println("\n6.room allotement");
+        System.out.println("1.Enter student details: ");
+        System.out.println("2.search student");
+        System.out.println("3.delete student");
+        System.out.println("4.Display student");
+        System.out.println("5.Modify record");
+        System.out.println("6.room allotement");
+        System.out.println("7.dues of spacific student");
+        System.out.println("8.Leave room");
     }
 
     public void Main(){
         String ch = "y";
         Integer Choice;
         do{
-
             choice();
             System.out.print("Enter your choice : ");
             Choice = scanner.nextInt();
@@ -71,6 +73,15 @@ public class ManagementStudent {
                     System.out.print("Enter address: ");
                     address = scanner.next();
                     submitStudentDetails.modifyRecord(name, branch, mobile, address);
+                    break;
+                case 6:
+                    roomDetails.allotRoom();
+                    break;
+                case 7:
+                    System.out.println("your current dues is: "+ roomDetails.duesOfSpecificStudent());
+                    break;
+                case 8:
+                    roomDetails.LeaveRoom();
                     break;
             }
             System.out.print("Do you want to continue(y/n)");

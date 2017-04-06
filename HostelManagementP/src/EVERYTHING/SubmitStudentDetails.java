@@ -5,12 +5,11 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class SubmitStudentDetails {
-
     private static Scanner scanner;
-    public ArrayList<AddStudentDetails>addStudentDetailss;
+    public static ArrayList<AddStudentDetails>addStudentDetailss = new ArrayList<>();
     public SubmitStudentDetails(){
         scanner = new Scanner(System.in);
-        addStudentDetailss = new ArrayList<>();
+//        addStudentDetailss = new ArrayList<>();
     }
 
     public void AddStudentInformation(String name, String branch, String mobile, String address){
