@@ -1,0 +1,34 @@
+/*SELECT * FROM Persons
+WHERE PersonID BETWEEN 1 AND 2;
+INSERT  INTO Persons(PersonID, LastName, FirstName, Address, City)
+    VALUES (3, 'das','martin','sky','throne');
+INSERT INTO Persons(LastName, FirstName, Address, City)
+    VALUES ('Mohan','Batman','ghotham','USA');
+SELECT LastName, FirstName, Address, City FROM Persons
+WHERE PersonID is NOT NULL ;
+SELECT * FROM Persons;
+UPDATE Persons
+SET PersonID = 4
+WHERE LastName='Mohan';
+DELETE FROM Persons
+WHERE PersonID = 1;*
+SELECT max(PersonID) or min(PersonID)
+FROM Persons;*
+SELECT count(PersonID)
+FROM Persons
+WHERE PersonID >= 1
+
+SELECT sum(PersonID)
+FROM Persons
+WHERE PersonID >= 1;
+SELECT * FROM Persons
+WHERE FirstName LIKE 'Lok%';
+SELECT * FROM Persons
+WHERE PersonID IN (1, 2);
+SELECT *
+FROM Persons;
+CREATE DATABASE Test;
+
+INSERT INTO Test.Test(Email, PASSWORD)
+    VALUES ('kajay5080@gmail.com','ajay1234');*/
+SELECT * FROM  student.Persons;
