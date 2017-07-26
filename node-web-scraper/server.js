@@ -1,5 +1,5 @@
-var accountSid = 'ACf507d642e54e13b63dc3b996a818d3bf'; 
-var authToken = 'c5b4a22cd299186e843c2dd31e5a0912';  
+var accountSid = 'your twilio account sid'; 
+var authToken = 'your twilio auth tocken';  
 var twilio = require('twilio');
 var request = require('request');
 var cheerio = require('cheerio');
@@ -22,8 +22,8 @@ var regex = new RegExp('SE', 'g')
                if(filter[0] == 'SE2015'){
                 client.messages.create({
                 body: 'Result...SE2015',
-                to: '+918084989467',  
-                from: '+12157097359' 
+                to: 'your mobile number',  
+                from: 'your twilio mobile number' 
             }).then((message) => console.log("message will be sent!!!"));
                }
            })
