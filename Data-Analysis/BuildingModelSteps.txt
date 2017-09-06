@@ -1,0 +1,11 @@
+Step1: 
+    Selection significance level to stay in model.
+Step2:
+    Fit in full model with all possible predictor
+Step3:
+    Conside the predictor with highest p value
+    if p > SL , go to Step4 otherwise go to FIN
+Step4:
+    Remove the predictor
+Step5:
+    Fit the model
