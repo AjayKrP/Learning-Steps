@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ./parts/head.ejs %>
+</head>
+<body>
+<% include ./parts/header.ejs %>
+
+<div class="top container">
+    <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
+        <h2 class="text-center">Profile Setting</h2><hr>
+        <form action="/user/api/v1/setting" method="post">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input name="firstname" class="form-control" placeholder="First Name">
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <input name="lastname" class="form-control" placeholder="Last Name">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <input name="movies" class="form-control" placeholder="Movies">
+            </div>
+            <div class="form-group">
+                <input name="tv" class="form-control" placeholder="TV">
+            </div>
+            <div class="form-group">
+                <input name="books" class="form-control" placeholder="Books">
+            </div>
+
+            <div class="form-group">
+                <input name="quotes" class="form-control" placeholder="Quotes">
+            </div>
+
+            <div class="form-group">
+                <textarea name="about_me" class="form-control" rows="5" placeholder="About Me"></textarea>
+            </div>
+
+
+            <div class="row">
+                <div class="col-sm-6">
+                    <button type="submit" class="btn btn-block btn-success">Save</button>
+                </div>
+                <div class="col-sm-6">
+                    <button type="reset" class="btn btn-block btn-danger">Cancel</button>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<% include ./parts/footer.ejs %>
+</body>
+</html>
+
