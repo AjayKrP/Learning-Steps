@@ -11,6 +11,6 @@
   "dependencies": {
     "method-override": "^2.3.9",
     "mongoose": "^4.11.4",
-    "morgan": "^1.8.2"
+    "morgan": "^1.9.1"
   }
 }
