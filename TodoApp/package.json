@@ -9,8 +9,8 @@
   "author": "Ajay",
   "license": "GPL-3.0",
   "dependencies": {
-    "method-override": "^2.3.9",
-    "mongoose": "^4.11.4",
-    "morgan": "^1.8.2"
+    "method-override": "^2.3.10",
+    "mongoose": "^4.13.21",
+    "morgan": "^1.10.0"
   }
 }
